@@ -1,0 +1,1 @@
+10 + obj.getValue()

@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         this.interpreter.addJavascriptInterface(new NativeInterface(this), "android");
+        this.interpreter.addJavascriptInterface(new InteractiveInterface(), "api");
 
         this.txtResultOrError = this.findViewById(R.id.txtJsResultOrError);
 
@@ -57,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnInterface = this.findViewById(R.id.btnInterface);
         btnInterface.setOnClickListener(view -> this.runInterfaceScript());
+
+        Button btnInterfaceII = this.findViewById(R.id.btnInterfaceII);
+        btnInterfaceII.setOnClickListener(view -> this.runInterfaceIIScript());
+
+        Button btnInline = this.findViewById(R.id.btnInline);
+        btnInline.setOnClickListener(view -> this.runInlineScript());
     }
 
     private void runAdditionScript() {
@@ -70,8 +77,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void runInterfaceScript() {
-        String error = this.readAssetScript("interface.js", null);
-        this.interpreter.execute(error);
+        String ivf = this.readAssetScript("interface.js", null);
+        this.interpreter.execute(ivf);
+    }
+
+    public void runInterfaceIIScript() {
+        String ivf = this.readAssetScript("interface2.js", null);
+        this.interpreter.execute(ivf);
+    }
+
+    public void runInlineScript() {
+        this.interpreter.execute("5 + 5");
     }
 
     private String readAssetScript(String scriptName, Charset charset) {

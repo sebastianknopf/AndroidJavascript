@@ -67,6 +67,14 @@ Finally, you can call the native interface methods in javascript as follows:
 ```javascript
 (function () {
     let number = app.getRandomNumber();
-    // ...
+    // ... do anything here in JS
+    app.setCalculationResult(number);
 })();
 ```
+
+## Execution Threads
+Javscript evaluation is done in a separate thread, so the UI will not be blocked during execution of your javascript code. If you want to interact with the UI views, you will need to wrap your statements into a `runOnUiThread()` call.
+
+
+## License
+This project is licensed under the Apache 2.0 license. See [LICENSE.md](/LICENSE.md) for more information.

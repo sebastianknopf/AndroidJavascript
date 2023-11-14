@@ -73,8 +73,10 @@ Finally, you can call the native interface methods in javascript as follows:
 ```
 
 ## Execution Threads
-Javscript evaluation is done in a separate thread, so the UI will not be blocked during execution of your javascript code. If you want to interact with the UI views, you will need to wrap your statements into a `runOnUiThread()` call.
+Javascript evaluation is done in a separate thread, so the UI will not be blocked during execution of your javascript code. If you want to interact with the UI views, you will need to wrap your statements into a `runOnUiThread()` call.
 
+## ProGuard
+Note that ProGuard might try to remove your @JavascriptInterface annotated methods since there's no call of this methods. This leads to a javascript error indicating that a certain method might not be defined. Please check your ProGuard configuration and protect your javascript interface methods if neccessary.
 
 ## License
-This project is licensed under the Apache 2.0 license. See [LICENSE.md](/LICENSE.md) for more information.
+This project is licensed under the Apache 2.0 license. See [LICENSE](/LICENSE.md) for more information.
